@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+<body>
+    <h1>Dijite cantidad a invertir:</h1>
+    <input type="number" id="inversion"name="inversion"><br>
+
+    <h1 for="coste">Cnatidad de años para la invesion:</h1>
+    <input type="number" id="aInversion"name="aInversion"><br>
+
+    <h2 id="resultado"></h2>
+    <button onclick="calcular()">calcular</button>
+    <script>
+        function calcular(){
+            const interesAnual = 5;
+            const resultado = document.getElementById("resultado");
+             let inversion = document.getElementById("inversion").value;
+             let aInversion= document.getElementById("aInversion").value;
+             
+             let montoFinal = inversion * (1 + interresAnual /100) ** aInversion;
+            resultado.innerText = "El monto final despues de " + aInversion + " años es: " + montoFinal.toFixed(2);
+        }
+    </script>
+</body>
+</html>
