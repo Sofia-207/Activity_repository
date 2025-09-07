@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nómina Constructora Tecnovivir Casas C.A.</title>
+</head>
+<body>
+    <h1>Nómina Constructora Tecnovivir Casas C.A.</h1>
+    
+    <div>
+        <label>Ingrese las horas trabajadas para cada obrero:</label>
+        <br><br>
+        <button onclick="calcularNomina()">Calcular Nómina</button>
+    </div>
+    
+    <div id="resultado"></div>
+
+    <script>
+        function calcularNomina() {
+            const precioHora = 10000; // Precio por hora trabajada
+            const totalObreros = 50; // Total de obreros calificados
+            let nominaTotal = 0;
+            let resultados = [];
+            
+            // Generar datos aleatorios para las horas trabajadas (simulando entrada de datos)
+            for (let i = 1; i <= totalObreros; i++) {
+                // Simular horas trabajadas entre 40 y 60 horas por semana
+                const horasTrabajadas = Math.floor(Math.random() * 21) + 40;
+                const salarioObrero = horasTrabajadas * precioHora;
+                nominaTotal += salarioObrero;
+                
+                resultados.push({
+                    obrero: i,
+                    horas: horasTrabajadas,
+                    salario: salarioObrero
+                });
+            }
+            
+            // Mostrar resultados
+            let html = '<h2>Nómina de 50 Obreros Calificados</h2>';
+            html += '<p><strong>Precio por hora: $' + precioHora.toLocaleString() + '</strong></p>';
+            html += '<table border="1" style="border-collapse: collapse; width: 100%;">';
+            html += '<tr><th>Obrero</th><th>Horas Trabajadas</th><th>Salario</th></tr>';
+            
+            resultados.forEach(obrero => {
+                html += '<tr>';
+                html += '<td>' + obrero.obrero + '</td>';
+                html += '<td>' + obrero.horas + '</td>';
+                html += '<td>$' + obrero.salario.toLocaleString() + '</td>';
+                html += '</tr>';
+            });
+            
+            html += '</table>';
+            html += '<h3>Total de la Nómina: $' + nominaTotal.toLocaleString() + '</h3>';
+            
+            document.getElementById('resultado').innerHTML = html;
+        }
+        
+        // Función alternativa para entrada manual de horas
+        function calcularNominaManual() {
+            const precioHora = 10000;
+            const totalObreros = 50;
+            let nominaTotal = 0;
+            let html = '<h2>Ingrese las horas trabajadas para cada obrero:</h2>';
+            
+            for (let i = 1; i <= totalObreros; i++) {
+                const horas = prompt('Ingrese las horas trabajadas del obrero ' + i + ':');
+                if (horas === null) return; // Usuario canceló
+                
+                const horasNum = parseFloat(horas);
+                if (isNaN(horasNum) || horasNum < 0) {
+                    alert('Por favor ingrese un número válido de horas.');
+                    i--; // Repetir este obrero
+                    continue;
+                }
+                
+                const salario = horasNum * precioHora;
+                nominaTotal += salario;
+                
+                html += '<p>Obrero ' + i + ': ' + horasNum + ' horas = $' + salario.toLocaleString() + '</p>';
+            }
+            
+            html += '<h3>Total de la Nómina: $' + nominaTotal.toLocaleString() + '</h3>';
+            document.getElementById('resultado').innerHTML = html;
+        }
+    </script>
+    
+    <br><br>
+    <button onclick="calcularNominaManual()">Calcular con Entrada Manual</button>
+</body>
+</html>

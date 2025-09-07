@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Pan - Panadería</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #8B4513;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #8B4513;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #A0522D;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #8B4513;
+        }
+        .result h3 {
+            color: #8B4513;
+            margin-top: 0;
+        }
+        .price-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 3px;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            color: #8B4513;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> Calculadora de Pan - Panadería</h1>
+        
+        <div class="form-group">
+            <label for="cantidad">Número de barras de pan que no son del día:</label>
+            <input type="number" id="cantidad" min="0" placeholder="Ingrese la cantidad">
+        </div>
+        
+        <button onclick="calcularPrecio()">Calcular Precio Total</button>
+        
+        <div id="resultado" class="result" style="display: none;">
+            <h3> Resumen de la Venta</h3>
+            <div id="detalles"></div>
+        </div>
+    </div>
+
+    <script>
+        function calcularPrecio() {
+            const cantidad = parseInt(document.getElementById('cantidad').value);
+            const resultado = document.getElementById('resultado');
+            const detalles = document.getElementById('detalles');
+            
+            // Validar entrada
+            if (isNaN(cantidad) || cantidad < 0) {
+                alert('Por favor, ingrese una cantidad válida de barras de pan.');
+                return;
+            }
+            
+            // Precios y descuentos
+            const precioHabitual = 12500; // Precio por barra fresca
+            const descuentoPorcentaje = 60; // 60% de descuento
+            const descuentoDecimal = descuentoPorcentaje / 100;
+            
+            // Cálculos
+            const descuentoPorBarra = precioHabitual * descuentoDecimal;
+            const precioConDescuento = precioHabitual - descuentoPorBarra;
+            const costoTotal = cantidad * precioConDescuento;
+            
+            // Mostrar resultados
+            detalles.innerHTML = `
+                <div class="price-info">
+                    <span>Precio habitual por barra:</span>
+                    <span>$${precioHabitual.toLocaleString()}</span>
+                </div>
+                <div class="price-info">
+                    <span>Descuento por no ser fresca (${descuentoPorcentaje}%):</span>
+                    <span>$${descuentoPorBarra.toLocaleString()}</span>
+                </div>
+                <div class="price-info">
+                    <span>Precio con descuento por barra:</span>
+                    <span>$${precioConDescuento.toLocaleString()}</span>
+                </div>
+                <div class="price-info">
+                    <span>Cantidad de barras:</span>
+                    <span>${cantidad}</span>
+                </div>
+                <div class="price-info total">
+                    <span> Costo final total:</span>
+                    <span>$${costoTotal.toLocaleString()}</span>
+                </div>
+            `;
+            
+            resultado.style.display = 'block';
+        }
+        
+        // Permitir calcular con Enter
+        document.getElementById('cantidad').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calcularPrecio();
+            }
+        });
+    </script>
+</body>
+</html>
