@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayor de dos valores</title>
+</head>
+<body>
+    <h1>Comparar dos valores</h1>
+    <label for="valor1">Valor 1:</label>
+    <input type="number" id="valor1" name="valor1" step="any">
+    <br>
+    <label for="valor2">Valor 2:</label>
+    <input type="number" id="valor2" name="valor2" step="any">
+    <br><br>
+    <button onclick="calcular()">Calcular mayor</button>
+    <p id="resultado"></p>
+    <script>
+        function calcular() {
+            const input1 = document.getElementById("valor1");
+            const input2 = document.getElementById("valor2");
+            const resultado = document.getElementById("resultado");
+
+            const a = parseFloat(input1.value);
+            const b = parseFloat(input2.value);
+
+            if (Number.isNaN(a) || Number.isNaN(b)) {
+                resultado.textContent = "Por favor, ingrese ambos valores.";
+                return;
+            }
+
+            if (a === b) {
+                resultado.textContent = "Los valores son iguales.";
+                return;
+            }
+
+            const mayor = a > b ? a : b;
+            resultado.textContent = `El mayor es: ${mayor}`;
+        }
+    </script>
+</body>
+</html>

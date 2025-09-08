@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mayor y menor de tres</title>
+</head>
+<body>
+    <input type="number" id="numero1" placeholder="numero1" step="any">
+    <input type="number" id="numero2" placeholder="numero2" step="any">
+    <input type="number" id="numero3" placeholder="numero3" step="any">
+    <button onclick="calcular()">Calcular</button>
+    <pre id="salida"></pre>
+    <script>
+        function calcular() {
+            const a = parseFloat(document.getElementById('numero1').value);
+            const b = parseFloat(document.getElementById('numero2').value);
+            const c = parseFloat(document.getElementById('numero3').value);
+
+            if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c)) {
+                alert('Ingrese los tres valores.');
+                return;
+            }
+
+            if (a === b || a === c || b === c) {
+                alert('Los valores deben ser distintos.');
+                return;
+            }
+
+            const mayor = Math.max(a, b, c);
+            const menor = Math.min(a, b, c);
+            document.getElementById('salida').textContent = `Mayor: ${mayor}\nMenor: ${menor}`;
+        }
+    </script>
+</body>
+</html>
+
