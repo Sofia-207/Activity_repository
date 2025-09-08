@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Parqueadero básico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function liquidar() {
+            const tipo = document.getElementById('tipo').value;
+            const horas = parseFloat(document.getElementById('horas').value);
+            if (!tipo) {
+                alert('Seleccione el tipo de vehículo.');
+                return;
+            }
+            if (Number.isNaN(horas) || horas < 0) {
+                alert('Ingrese el número de horas.');
+                return;
+            }
+            const tarifa = tipo === 'moto' ? 1000 : 2000;
+            const total = tarifa * horas;
+            const tipoTexto = tipo === 'moto' ? 'Motocicleta' : 'Automóvil';
+            document.getElementById('resultado').textContent = `Vehículo: ${tipoTexto}\nHoras: ${horas}\nTotal a pagar: $${total.toFixed(0)}`;
+        }
+    </script>
+</head>
+<body>
+    <select id="tipo">
+        <option value="">-- tipo de vehículo --</option>
+        <option value="moto">Motocicleta</option>
+        <option value="auto">Automóvil</option>
+    </select>
+    <input type="number" id="horas" placeholder="horas" step="any" min="0">
+    <button onclick="liquidar()">Liquidar</button>
+    <pre id="resultado"></pre>
+</body>
+</html>
+
