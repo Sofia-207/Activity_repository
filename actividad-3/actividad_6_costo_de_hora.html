@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <h1 for= "horas">horas trabajadas:</h1>
+    <input type="number" id="horas"name="horas"><br>
+
+    <h1 for="coste">coste por hora:</h1>
+    <input type="number" id="coste"name="coste"><br>
+    <button onclick="calcular()">calcular</button>
+    <script>
+        function calcular(){
+             let horas = document.getElementById("horas").value;
+             let coste= document.getElementById("coste").value;
+             let paga=horas * coste;
+            alert("la paga correspondiente es:"+ paga);
+        }
+    </script>
+</body>
+</html>
