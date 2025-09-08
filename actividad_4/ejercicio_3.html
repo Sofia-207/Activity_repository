@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mayoría de edad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function evaluarEdad() {
+            const valor = document.getElementById('edad').value;
+            const edad = parseInt(valor, 10);
+            if (Number.isNaN(edad)) {
+                alert('Ingrese una edad válida.');
+                return;
+            }
+            const mensaje = edad >= 18 ? 'Mayor de edad' : 'Menor de edad';
+            document.getElementById('resultado').textContent = mensaje;
+        }
+    </script>
+    </head>
+<body>
+    <input type="number" id="edad" placeholder="edad" min="0" step="1">
+    <button onclick="evaluarEdad()">Evaluar</button>
+    <pre id="resultado"></pre>
+</body>
+</html>
+

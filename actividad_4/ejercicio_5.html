@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Velocidad del automóvil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function evaluar() {
+            const v = parseFloat(document.getElementById('velocidad').value);
+            if (Number.isNaN(v)) {
+                alert('Ingrese la velocidad en K/H.');
+                return;
+            }
+            const mensaje = v > 80 ? 'Exceso de velocidad' : 'Velocidad permitida';
+            document.getElementById('resultado').textContent = mensaje;
+        }
+    </script>
+</head>
+<body>
+    <input type="number" id="velocidad" placeholder="velocidad (K/H)" step="any">
+    <button onclick="evaluar()">Evaluar</button>
+    <pre id="resultado"></pre>
+</body>
+</html>
+

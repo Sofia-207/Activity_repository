@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Promedio de 4 notas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function calcular() {
+            const n1 = parseFloat(document.getElementById('nota1').value);
+            const n2 = parseFloat(document.getElementById('nota2').value);
+            const n3 = parseFloat(document.getElementById('nota3').value);
+            const n4 = parseFloat(document.getElementById('nota4').value);
+
+            if ([n1, n2, n3, n4].some(Number.isNaN)) {
+                alert('Ingrese las 4 notas.');
+                return;
+            }
+
+            const promedio = (n1 + n2 + n3 + n4) / 4;
+            const estado = promedio >= 3 ? 'Aprobó' : 'Reprobó';
+            document.getElementById('salida').textContent = `Promedio: ${promedio.toFixed(2)}\n${estado} el semestre`;
+        }
+    </script>
+</head>
+<body>
+    <input type="number" id="nota1" placeholder="nota 1" step="any">
+    <input type="number" id="nota2" placeholder="nota 2" step="any">
+    <input type="number" id="nota3" placeholder="nota 3" step="any">
+    <input type="number" id="nota4" placeholder="nota 4" step="any">
+    <button onclick="calcular()">Calcular</button>
+    <pre id="salida"></pre>
+</body>
+</html>
+
