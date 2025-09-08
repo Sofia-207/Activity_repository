@@ -1,0 +1,28 @@
+<!-- Ejercicio #6 Escribir un algoritmo que pregunte al usuario por el número de horas trabajadas y el coste
+por hora. Después debe realizar el cálculo correspondiente y mostrar por pantalla la paga que le
+corresponde al empleado por su trabajo. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJERCICIO 6</title>
+</head>
+<body>
+    <h1 for="horas">Horas trabajadas:</h1>
+    <input type="number" id="horas" name="horas"><br>
+    
+    <h1 for="coste">Coste por hora:</h1>
+    <input type="number" id="coste" name="coste"><br>
+    <button onclick="calcular()">Calcular</button>
+    <script>
+        function calcular(){
+            let horas = document.getElementById("horas").value;
+            let coste = document.getElementById("coste").value;
+            let paga = horas * coste;
+            alert("La paga correspondiente es: " + paga);
+        }
+        </script>
+</body>
+</html>
